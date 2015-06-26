@@ -1,0 +1,56 @@
+<div ng-controller="ordersController as oc">	
+	<div class="row" ng-controller="customersController as cc">
+		<div class="col-md-5">
+			<h2>Add a new order</h2>
+			<p>Customer</p>
+			<select ng-model="oc.newOrder.name" ng-options="customer.name for customer in cc.customers"></select>
+			<p>Order</p>
+			<select ng-model="oc.newOrder.amount">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+			</select>
+			<p>Item</p>
+			<select ng-model="oc.newOrder.item">
+				<option value="Nike Shoes">Nike Shoes</option>
+				<option value="Black Belts">Black Belts</option>
+				<option value="Ice Creams">Ice Creams</option>
+				<option value="Candies">Candies</option>
+			</select><br><br>
+			<input type="submit" ng-click="oc.addOrder()" value="Add Order"><br>
+			<p>Search Orders</p>
+			<input type="text" ng-model="oc.filter_name">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10">
+			<br><table class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<td>Customer Name</td>
+						<td>Product</td>
+						<td>Quantity</td>
+						<td>Date</td>
+						<td>Actions</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="order in oc.orders | filter: oc.filter_name | orderBy: 'date_created' ">
+						<td ng-bind="order.name"></td>
+						<td ng-bind="order.item"></td>
+						<td ng-bind="order.amount"></td>
+						<td ng-bind="order.date | date"></td>
+						<td><input type="submit" ng-click="oc.removeOrder(order)" value="Delete"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</select>
